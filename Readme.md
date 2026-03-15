@@ -66,7 +66,8 @@ Tested on Ubuntu 18.04 and 20.04. and 22.04
 1. Clone and build [OpenCV](https://github.com/opencv/opencv) >= 4.5.0 **with** [contrib](https://github.com/opencv/opencv) modules. Latter are needed for Aruco marker detection.
 On Ubuntu 22.04 you can also just install it from apt:
 ``` bash
-sudo apt-get install libopencv-dev libopencv-contrib-dev
+sudo apt update
+sudo apt install -y cmake libgoogle-glog-dev libgflags-dev libeigen3-dev libsuitesparse-dev
 ``` 
 
 2. Install [ceres 2.1](http://ceres-solver.org/installation.html)
@@ -74,21 +75,30 @@ sudo apt-get install libopencv-dev libopencv-contrib-dev
 git clone https://github.com/ceres-solver/ceres-solver
 cd ceres-solver
 git checkout 2.1.0
-mkdir -p build && cd build && cmake .. -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=Release
+mkdir -p build
+cd build
+cmake .. -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=Release
 sudo make -j install
 ```
 
 3. Clone and build the [TheiaSfM fork](https://github.com/urbste/pyTheiaSfM).
 ``` bash
 git clone https://github.com/urbste/pyTheiaSfM
-cd pyTheiaSfM && git checkout 69c3d37 && mkdir -p build && cd build
-cmake .. && make -j
+cd pyTheiaSfM
+git checkout 69c3d37
+mkdir -p build
+cd build
+cmake ..
+make -j
 sudo make install
 ```
 4. Build this project
 ``` bash
 git clone https://github.com/urbste/OpenImuCameraCalibrator
-mkdir -p build && cd build && cmake ..
+cd OpenImuCameraCalibrator
+mkdir -p build
+cd build
+cmake ..
 make -j
 ``` 
 
