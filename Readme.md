@@ -74,15 +74,21 @@ sudo apt-get install libopencv-dev libopencv-contrib-dev
 git clone https://github.com/ceres-solver/ceres-solver
 cd ceres-solver
 git checkout 2.1.0
-mkdir -p build && cd build && cmake .. -DBUILD_EXAMPLES=OFF -DCMAKE_BUILD_TYPE=Release
-sudo make -j install
+mkdir -p build
+cd build
+cmake ..
+make -j
 ```
 
 3. Clone and build the [TheiaSfM fork](https://github.com/urbste/pyTheiaSfM).
 ``` bash
 git clone https://github.com/urbste/pyTheiaSfM
-cd pyTheiaSfM && git checkout 69c3d37 && mkdir -p build && cd build
-cmake .. && make -j
+cd /pyTheiaSfM
+git checkout 69c3d37
+mkdir -p build
+cd build
+cmake ..
+make -j
 sudo make install
 ```
 4. Build this project
@@ -104,12 +110,12 @@ docker build -t openicc .
 ```
 Now you can mount the OpenICC folder to your docker container, as well as the folder that contains your calibration data (e.g. download [GoPro9 dataset](https://drive.google.com/file/d/1t2_hb4ko6llmVy_rZZHCi7S6D9-lYUa1/view?usp=drive_link) to /home/Downloads/GoPro9 )
 ``` bash
-docker run -it --rm -v `pwd`:/home -v /home/Downloads/GoPro9:/dataset openicc
+docker run -it --rm -v `pwd`:/home -v ./data:/dataset openicc
 ``` 
 Finally you can run the calibration like this:
 ``` bash
 cd /home
-python3 python/run_gopro_calibration.py --path_calib_dataset /dataset/dataset3/ --path_to_build ../OpenImuCameraCalibrator/build/applications/
+python3 python/run_gopro_calibration.py --path_calib_dataset /dataset/YOUR_DATASET --path_to_build ../OpenImuCameraCalibrator/build/applications/
 ```
 
 ## Usage examples
