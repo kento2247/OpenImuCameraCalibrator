@@ -18,7 +18,7 @@ def main():
                         help="Path to calibration dataset")
     parser.add_argument('--path_to_build', 
                         help="Path to OpenCameraCalibrator build folder.",
-                        default='/home/steffen/projects/OpenImuCameraCalibrator/build/applications') 
+                        default='build/applications') 
     parser.add_argument('--path_to_imu_intrinsics', 
                         help="If available you can also supply imu intrinsics. Can be generated with static_multipose_imu_calibration.py",
                         default='')  
