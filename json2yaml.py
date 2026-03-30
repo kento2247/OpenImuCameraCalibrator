@@ -11,6 +11,17 @@ def load_json(path: str) -> dict:
         return json.load(f)
 
 
+def apply_allan_summary(args: argparse.Namespace) -> None:
+    if not args.allan_summary_json:
+        return
+
+    summary = load_json(args.allan_summary_json)
+    args.noise_gyro = float(summary['gyro_white_noise_mean'])
+    args.noise_acc = float(summary['acc_white_noise_mean'])
+    args.gyro_walk = float(summary['gyro_bias_instability_mean'])
+    args.acc_walk = float(summary['acc_bias_instability_mean'])
+
+
 def quat_to_rotmat(q: dict) -> np.ndarray:
     w = float(q['w'])
     x = float(q['x'])
@@ -174,6 +185,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('--camera_json', required=True, help='Path to cam_calib_*.json')
     parser.add_argument('--imu_cam_json', required=True, help='Path to cam_imu_calib_result_*.json')
     parser.add_argument('--output', required=True, help='Path to output yaml')
+    parser.add_argument('--allan_summary_json', help='Optional Allan summary JSON. If set, overrides noise and walk values.')
     parser.add_argument('--noise_gyro', type=float, default=0.0015)
     parser.add_argument('--noise_acc', type=float, default=0.017)
     parser.add_argument('--gyro_walk', type=float, default=5.0e-5)
@@ -202,6 +214,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    apply_allan_summary(args)
     camera_json = load_json(args.camera_json)
     imu_cam_json = load_json(args.imu_cam_json)
     yaml_text = generate_yaml(camera_json, imu_cam_json, args)

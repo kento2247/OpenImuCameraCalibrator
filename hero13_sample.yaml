@@ -1,0 +1,61 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters
+#--------------------------------------------------------------------------------------------
+File.version: "1.0"
+Camera.type: "KannalaBrandt8"
+Camera1.fx: 699.278215144
+Camera1.fy: 699.154894557
+Camera1.cx: 999.905068375
+Camera1.cy: 752.737091779
+
+Camera1.k1: 0.205252000635
+Camera1.k2: -0.261291207914
+Camera1.k3: 0.236151849875
+Camera1.k4: -0.0811053804742
+
+Camera.width: 2000
+Camera.height: 1500
+
+Camera.fps: 59.9400599401
+Camera.RGB: 1
+
+# Transformation from body/IMU to camera.
+IMU.T_b_c1: !!opencv-matrix
+    rows: 4
+    cols: 4
+    dt: f
+    data: [ 0.00108208247621, -0.999976974256, 0.00669925786739, 0.00343393403723, -0.999998800924, -0.00107463600143, 0.001115037176, 0.0125153925039, -0.00110781223775, -0.00670045639666, -0.999976938052, -0.0508695636203, 0, 0, 0, 1 ]
+
+IMU.NoiseGyro: 0.00155037333333
+IMU.NoiseAcc: 0.0165227
+IMU.GyroWalk: 4.54147e-05
+IMU.AccWalk: 0.000903056333333
+IMU.Frequency: 200
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+ORBextractor.nFeatures: 1250
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+System.thFarPoints: 20
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -3.5
+Viewer.ViewpointF: 500
+Viewer.imageViewScale: 1
